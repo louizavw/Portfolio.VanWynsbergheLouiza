@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Louiza Van Wynsberghe — Product Design Portfolio</title>
+<meta name="description" content="Product development portfolio of Louiza Van Wynsberghe — functional beauty through design.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Archivo+Black&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0a0a0a;
+  --paper: #ffffff;
+  --grey: #6b6b6b;
+  --grey-light: #d8d8d4;
+  --amber: #0a0a0a;
+  --amber-dim: #ececec;
+  --max-w: 1320px;
+  --edge: clamp(20px, 5vw, 64px);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+
+img { display: block; max-width: 100%; height: auto; }
+
+.wrap {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding-left: var(--edge);
+  padding-right: var(--edge);
+}
+
+/* ---------- progress rail (signature element) ---------- */
+.rail {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  width: 100%;
+  z-index: 1000;
+  background: transparent;
+}
+.rail-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--amber);
+  transition: width 0.1s linear;
+}
+.rail-rivets {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 3px;
+  z-index: 999;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+}
+.rail-rivets span {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--grey-light);
+  transform: translateY(-1px);
+}
+
+/* ---------- nav ---------- */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 900;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px var(--edge);
+  background: rgba(255,255,255,0.86);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(10,10,10,0.06);
+  transition: transform 0.4s ease;
+}
+.nav.hide { transform: translateY(-100%); }
+.nav-name {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+.nav-links {
+  display: flex;
+  gap: clamp(16px, 3vw, 36px);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.nav-links a {
+  position: relative;
+  padding-bottom: 4px;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0%; height: 1.5px;
+  background: var(--amber);
+  transition: width 0.25s ease;
+}
+.nav-links a:hover::after { width: 100%; }
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.nav-toggle span {
+  width: 22px; height: 2px;
+  background: var(--ink);
+}
+.nav-mobile {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .nav-links { display: none; }
+  .nav-toggle { display: flex; }
+  .nav-mobile {
+    position: fixed;
+    top: 64px; left: 0; right: 0;
+    background: var(--paper);
+    border-bottom: 1px solid rgba(10,10,10,0.08);
+    flex-direction: column;
+    padding: 8px var(--edge) 24px;
+    gap: 18px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    z-index: 890;
+  }
+  .nav-mobile.open { display: flex; }
+}
+
+/* ---------- hero ---------- */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-top: 90px;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: clamp(32px, 6vw, 80px);
+  align-items: center;
+  width: 100%;
+}
+.hero-img-wrap {
+  position: relative;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  background: #000;
+}
+.hero-img-wrap img {
+  width: 100%; height: 100%; object-fit: cover;
+  transform: scale(1.04);
+  animation: heroIn 1.6s cubic-bezier(.2,.7,.2,1) forwards;
+}
+@keyframes heroIn {
+  from { transform: scale(1.15); opacity: 0; }
+  to { transform: scale(1.04); opacity: 1; }
+}
+.hero-eyebrow {
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--grey);
+  margin-bottom: 18px;
+  font-weight: 500;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.2s forwards;
+}
+.hero h1 {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: clamp(2.6rem, 6.4vw, 5.4rem);
+  line-height: 0.96;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: fadeUp 0.9s ease 0.35s forwards;
+}
+.hero h1 span {
+  display: block;
+}
+.hero h1 .accent {
+  color: transparent;
+  -webkit-text-stroke: 2px var(--ink);
+  text-stroke: 2px var(--ink);
+}
+.hero-sub {
+  margin-top: 28px;
+  max-width: 460px;
+  color: var(--grey);
+  font-size: 17px;
+  line-height: 1.7;
+  opacity: 0;
+  animation: fadeUp 0.9s ease 0.55s forwards;
+}
+.hero-cta {
+  margin-top: 36px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 0.9s ease 0.7s forwards;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 28px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: 1.5px solid var(--ink);
+  transition: background 0.25s ease, color 0.25s ease;
+}
+.btn-solid {
+  background: var(--ink);
+  color: var(--paper);
+}
+.btn-solid:hover { background: var(--amber); border-color: var(--amber); color: var(--ink); }
+.btn-outline:hover { background: var(--ink); color: var(--paper); }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 880px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero-img-wrap { order: -1; aspect-ratio: 4/5; }
+  .hero { padding-top: 110px; padding-bottom: 60px; }
+}
+
+/* ---------- section shared ---------- */
+section { position: relative; }
+.section-pad { padding: clamp(70px, 11vw, 140px) 0; }
+.eyebrow {
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--amber);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+h2.section-title {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: clamp(2rem, 4.4vw, 3.4rem);
+  line-height: 1.02;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+
+/* reveal-on-scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.8s cubic-bezier(.2,.7,.2,1), transform 0.8s cubic-bezier(.2,.7,.2,1);
+}
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- about ---------- */
+.about-grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: clamp(40px, 6vw, 90px);
+  align-items: start;
+}
+.about-img {
+  aspect-ratio: 4/5;
+  overflow: hidden;
+  position: sticky;
+  top: 110px;
+}
+.about-img img { width: 100%; height: 100%; object-fit: cover; }
+.about-text p {
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+  line-height: 1.75;
+  color: #222;
+  margin-bottom: 22px;
+  max-width: 640px;
+}
+.about-text p:first-of-type {
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  font-weight: 500;
+  color: var(--ink);
+}
+.skills-block {
+  margin-top: 56px;
+}
+.skills-label {
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--grey);
+  margin-bottom: 18px;
+  font-weight: 600;
+}
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.skill-pill {
+  font-size: 13px;
+  font-weight: 500;
+  padding: 9px 16px;
+  border: 1px solid rgba(10,10,10,0.18);
+  border-radius: 100px;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+.skill-pill:hover { border-color: var(--amber); color: var(--amber); }
+
+.timeline {
+  margin-top: 56px;
+  border-top: 1px solid rgba(10,10,10,0.12);
+}
+.tl-row {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 24px;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(10,10,10,0.12);
+  font-size: 14px;
+}
+.tl-date {
+  font-weight: 600;
+  color: var(--amber);
+  letter-spacing: 0.02em;
+}
+.tl-desc strong { display: block; font-size: 15px; margin-bottom: 2px; }
+.tl-desc span { color: var(--grey); }
+
+@media (max-width: 880px) {
+  .about-grid { grid-template-columns: 1fr; }
+  .about-img { position: static; aspect-ratio: 3/4; max-width: 360px; }
+  .tl-row { grid-template-columns: 120px 1fr; }
+}
+
+/* ---------- work index ---------- */
+.work-index { padding-top: 0; }
+.work-row {
+  display: grid;
+  grid-template-columns: 90px 1fr auto;
+  align-items: baseline;
+  gap: 24px;
+  padding: 34px 0;
+  border-top: 1px solid rgba(10,10,10,0.14);
+  cursor: pointer;
+  transition: padding-left 0.3s ease;
+}
+.work-row:last-child { border-bottom: 1px solid rgba(10,10,10,0.14); }
+.work-num {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--grey);
+}
+.work-name {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  text-transform: uppercase;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+.work-row:hover .work-name { color: var(--amber); transform: translateX(8px); }
+.work-row:hover { padding-left: 8px; }
+.work-meta {
+  font-size: 13px;
+  color: var(--grey);
+  text-align: right;
+  white-space: nowrap;
+}
+@media (max-width: 600px) {
+  .work-row { grid-template-columns: 56px 1fr; padding-left: 4px; }
+  .work-meta { display: none; }
+}
+
+/* ---------- project sections ---------- */
+.project {
+  border-top: 1px solid rgba(10,10,10,0.1);
+}
+.project-head {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: end;
+  gap: 24px;
+  padding-top: clamp(60px, 9vw, 110px);
+  margin-bottom: clamp(40px, 6vw, 70px);
+}
+.project-num {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  color: var(--amber);
+}
+.project-title {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: clamp(2.6rem, 7vw, 6rem);
+  line-height: 0.92;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+.project-tags {
+  text-align: right;
+  font-size: 12px;
+  color: var(--grey);
+  line-height: 1.9;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 500;
+}
+@media (max-width: 760px) {
+  .project-head { grid-template-columns: 1fr; text-align: left; }
+  .project-tags { text-align: left; }
+}
+
+.project-meta-row {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: var(--grey);
+  margin-bottom: 50px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+.project-meta-row strong { color: var(--ink); }
+
+.project-hero-img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  margin-bottom: clamp(40px, 6vw, 80px);
+  background: #f2f2f0;
+}
+.project-hero-img img { width: 100%; height: 100%; object-fit: cover; }
+
+.project-body {
+  display: grid;
+  grid-template-columns: 0.95fr 1.3fr;
+  gap: clamp(36px, 5vw, 80px);
+  margin-bottom: clamp(50px, 7vw, 90px);
+}
+.project-body p {
+  font-size: 16.5px;
+  line-height: 1.8;
+  color: #222;
+  margin-bottom: 20px;
+}
+.project-body-label {
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--amber);
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+@media (max-width: 880px) {
+  .project-body { grid-template-columns: 1fr; }
+}
+
+.img-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-bottom: clamp(40px, 6vw, 80px);
+}
+.img-pair.uneven { grid-template-columns: 1.3fr 1fr; }
+.img-pair figure, .img-solo figure { overflow: hidden; background: #f2f2f0; }
+.img-pair img, .img-solo img { width: 100%; height: 100%; object-fit: cover; }
+figcaption {
+  margin-top: 12px;
+  font-size: 12.5px;
+  color: var(--grey);
+  letter-spacing: 0.02em;
+}
+.img-solo {
+  margin-bottom: clamp(40px, 6vw, 80px);
+}
+@media (max-width: 760px) {
+  .img-pair, .img-pair.uneven { grid-template-columns: 1fr; }
+}
+
+.callout {
+  border-left: 3px solid var(--amber);
+  padding: 4px 0 4px 26px;
+  margin: 8px 0 40px;
+  font-size: 15px;
+  line-height: 1.8;
+  color: #333;
+}
+.callout strong { color: var(--ink); }
+
+.brand-mark {
+  width: 100px;
+  margin: 8px 0 28px;
+  display: block;
+}
+
+  margin-top: 50px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(10,10,10,0.12);
+  font-size: 13.5px;
+  color: var(--grey);
+}
+.collab strong { color: var(--ink); display: block; margin-bottom: 6px; font-weight: 600; }
+
+.project-foot-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 36px 0 80px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+  color: var(--grey);
+}
+.project-foot-nav a:hover { color: var(--amber); }
+
+/* ---------- contact ---------- */
+.contact {
+  background: var(--ink);
+  color: var(--paper);
+}
+.contact .eyebrow { color: rgba(255,255,255,0.55); }
+.contact h2 {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: clamp(2.4rem, 7vw, 5.5rem);
+  text-transform: uppercase;
+  line-height: 0.98;
+  letter-spacing: -0.01em;
+  max-width: 900px;
+}
+.contact-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 50px;
+  padding-top: 36px;
+  border-top: 1px solid rgba(255,255,255,0.18);
+}
+.contact-links { display: flex; flex-direction: column; gap: 10px; }
+.contact-link {
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  font-weight: 500;
+  position: relative;
+  display: inline-block;
+  width: max-content;
+}
+.contact-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0;
+  width: 0%; height: 1.5px;
+  background: var(--amber);
+  transition: width 0.3s ease;
+}
+.contact-link:hover::after { width: 100%; }
+.contact-small {
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+footer {
+  background: var(--ink);
+  color: rgba(255,255,255,0.45);
+  font-size: 12.5px;
+  padding: 24px var(--edge) 30px;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* back to top */
+.totop {
+  position: fixed;
+  bottom: 28px; right: 28px;
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--paper);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease, bottom 0.3s ease;
+  z-index: 800;
+  border: none;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+}
+.totop.near-footer { bottom: 90px; }
+.totop.show { opacity: 1; pointer-events: auto; }
+.totop:hover { background: var(--grey); transform: translateY(-3px); }
+</style><body>
+
+<div class="rail"><div class="rail-fill" id="railFill"></div></div>
+
+<nav class="nav" id="nav">
+  <a class="nav-name" href="#top">Louiza Van Wynsberghe</a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#work">Work</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <button class="nav-toggle" id="navToggle" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="#about">About</a>
+  <a href="#work">Work</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<main id="top">
+
+  <section class="hero wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-eyebrow">Product Development — Antwerp, Belgium</div>
+        <h1>
+          <span>Functional</span>
+          <span class="accent">Beauty</span>
+          <span>in Design</span>
+        </h1>
+        <p class="hero-sub">I'm Louiza, a Master's student in Product Development at the University of Antwerp. I design things worth keeping — where the way something works is as considered as the way it looks.</p>
+        <div class="hero-cta">
+          <a href="#work" class="btn btn-solid">View Projects</a>
+          <a href="#contact" class="btn btn-outline">Get in Touch</a>
+        </div>
+      </div>
+      <div class="hero-img-wrap">
+        <img src="file:///C:/Users/32460/OneDrive%20-%20Universiteit%20Antwerpen/Bureaublad/website/blury.jpeg" alt="Long-exposure light study, the DEVINE DINING table lamp glowing in the dark — Louiza Van Wynsberghe">
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad wrap" id="about">
+    <div class="about-grid">
+      <div class="about-img reveal">
+        <img src="file:///C:/Users/32460/Downloads/LOUIZA-9.jpg" alt="Portrait of Louiza Van Wynsberghe">
+      </div>
+      <div class="about-text">
+        <p>My name is Louiza. I'm a Master's student in Product Development at the University of Antwerp. Ever since I was little, I've been fascinated by beauty — from museums on holiday to the little things in everyday life. Later on, I attended art school in my spare time. From pen and paper to altering old clothes. Making things, repairing them or creating them myself, always on the lookout for new ways to keep my hands busy.</p>
+        <p>Why is something made in a certain way? How do the parts fit together? What is it made of? How does it work? These questions often go round and round in my head. When the product development course was suggested to me, I no longer had to think about what I would do after secondary school. Now, after three years of hard work, I'm still happy with my choice and couldn't imagine doing anything else. It feels as though I can utilise and challenge all my talents here.</p>
+        <p>I love all the aspects of the design process that involve aesthetics, coming up with ideas, and physically creating and visualising them. Through mood boards, I'm discovering new styles, and new challenges don't put me off. I'm passionate about the subject and dream of being able to share this with others and make a contribution. Take a look here at the start of my creative journey in search of functional beauty.</p>
+
+        <div class="skills-block reveal">
+          <div class="skills-label">Skills</div>
+          <div class="skills-list">
+            <span class="skill-pill">Prototyping</span>
+            <span class="skill-pill">Sketching</span>
+            <span class="skill-pill">Adobe InDesign</span>
+            <span class="skill-pill">Adobe Photoshop</span>
+            <span class="skill-pill">Adobe Illustrator</span>
+            <span class="skill-pill">Procreate</span>
+            <span class="skill-pill">SolidWorks</span>
+          </div>
+        </div>
+
+        <div class="timeline reveal">
+          <div class="tl-row">
+            <div class="tl-date">2024 — Present</div>
+            <div class="tl-desc"><strong>Master in Product Development</strong><span>University of Antwerp</span></div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-date">2021 — 2024</div>
+            <div class="tl-desc"><strong>Bachelor in Product Development</strong><span>University of Antwerp</span></div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-date">2015 — 2021</div>
+            <div class="tl-desc"><strong>Major in Science &amp; Mathematics (ASO)</strong><span>Municipal Lyceum Groenhout</span></div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-date">2015 — 2021</div>
+            <div class="tl-desc"><strong>Third degree education in visual and audiovisual arts</strong><span>Academy of Fine Arts Kontich</span></div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-date">2008 — 2015</div>
+            <div class="tl-desc"><strong>Secondary education in visual arts</strong><span>Academie voor Schone Kunsten Kontich</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad work-index wrap" id="work">
+    <div class="work-row" onclick="document.getElementById('project-01').scrollIntoView({behavior:'smooth'})">
+      <div class="work-num">.01</div>
+      <div class="work-name">Paper IKEA Lamp</div>
+      <div class="work-meta">Dec 2021 — Individual</div>
+    </div>
+    <div class="work-row" onclick="document.getElementById('project-02').scrollIntoView({behavior:'smooth'})">
+      <div class="work-num">.02</div>
+      <div class="work-name">Memoria</div>
+      <div class="work-meta">Dec 2021 — Group</div>
+    </div>
+    <div class="work-row" onclick="document.getElementById('project-03').scrollIntoView({behavior:'smooth'})">
+      <div class="work-num">.03</div>
+      <div class="work-name">NEX Hand‑Brace</div>
+      <div class="work-meta">May 2024 — Group</div>
+    </div>
+    <div class="work-row" onclick="document.getElementById('project-04').scrollIntoView({behavior:'smooth'})">
+      <div class="work-num">.04</div>
+      <div class="work-name">Compost Toilet</div>
+      <div class="work-meta">May 2024 — Individual</div>
+    </div>
+    <div class="work-row" onclick="document.getElementById('project-05').scrollIntoView({behavior:'smooth'})">
+      <div class="work-num">.05</div>
+      <div class="work-name">Devine Dining — TABA</div>
+      <div class="work-meta">May 2025 — Group</div>
+    </div>
+  </section>
+
+  <section class="project" id="project-01">
+    <div class="wrap">
+      <div class="project-head">
+        <div class="project-num">.01</div>
+        <h2 class="project-title">Paper<br>IKEA Lamp</h2>
+        <div class="project-tags">Individual Project<br>December 2021<br>6 Weeks</div>
+      </div>
+      <div class="project-meta-row">
+        <div><strong>Tools —</strong> Design, Prototyping, SolidWorks, Laser Cutting, Adobe InDesign</div>
+      </div>
+
+      <div class="project-hero-img reveal">
+        <img src="file:///C:/Users/32460/OneDrive%20-%20Universiteit%20Antwerpen/Bureaublad/website/IMG_7211_.png" alt="The finished Paper IKEA Lamp glowing in a dark room">
+      </div>
+
+      <div class="project-body reveal">
+        <div>
+          <div class="project-body-label">Brief</div>
+          <p>Throughout the course, we are reminded with every project to design within the circular economy. This lamp was our first encounter with this concept. Favini introduced us to their Crush paper collection — papers made from the residue of citrus fruits, grapes, maize and more. They asked us to design a lamp using paper from the Crush range that would fit onto a standard IKEA light fitting.</p>
+        </div>
+        <div>
+          <div class="project-body-label">Process</div>
+          <p>The design process began with the creation of a physical collage, to draw inspiration for the lamp's shapes. Using the shapes and contrasts from that collage, the limits of paper were explored through sketching and folding studies before settling on a final form.</p>
+          <p>The cut-out sheet can be sold alongside a matching IKEA light fitting. According to the included instructions, the lamp can be easily assembled by the buyer themselves — no tools required.</p>
+        </div>
+      </div>
+
+ <div class="img-solo reveal">
+        <figure>
+          <img src="file:///C:/Users/32460/OneDrive%20-%20Universiteit%20Antwerpen/Bureaublad/website/collage%20-%20lamp.png" alt="collage fotos lamp">
+        </figure>
+      </div>
+
+    </div>
+
+    <div class="wrap project-foot-nav">
+      <a href="#work">← Back to work</a>
+      <a href="#project-02">Next — Memoria →</a>
+    </div>
+  </section>
+
+  <section class="project" id="project-02">
+    <div class="wrap">
+      <div class="project-head">
+        <div class="project-num">.02</div>
+        <h2 class="project-title">Memoria</h2>
+        <div class="project-tags">Group Project<br>December 2021<br>6 Weeks</div>
+      </div>
+      <div class="project-meta-row">
+        <div><strong>Tools —</strong> Sketching, Prototyping, SolidWorks, Adobe Photoshop, Illustrator, InDesign, After Effects</div>
+        <div><strong>In collaboration with —</strong> Kobe Hallans</div>
+      </div>
+
+      <div class="project-hero-img reveal">
+        <img src="file:///C:/Users/32460/OneDrive%20-%20Universiteit%20Antwerpen/Bureaublad/website/ketting%20schuin.png" alt="Studio shot of the Memoria wearable, a flowing white form that wraps around the neck or wrist">
+      </div>
+
+      <div class="project-body reveal">
+        <div>
+          <div class="project-body-label">First Prototype</div>
+          <p>In this first flexible prototype for UX testing, we created a model that offers the same design possibilities as the final product. It can be worn around the neck or wrapped around the wrist. With this foam model, each wearing style could already be analysed during the first round of user testing.</p>
+        </div>
+        <div>
+          <div class="project-body-label">Refining the Design</div>
+          <p>Due to changes made to the design, it was no longer necessary to maintain the same level of flexibility as in the first prototype. The refined foam model was slightly flexible, making it easy to hang around the neck and connect for activation. The various cut-outs were incorporated in detail, just as they would be in the final concept.</p>
+        </div>
+      </div>
+
+      <div class="img-pair uneven reveal">
+        <figure>
+          <img src="file:///C:/Users/32460/OneDrive%20-%20Universiteit%20Antwerpen/Bureaublad/website/IMG_4328.png" alt="Memoria worn as a necklace, draped diagonally">
+          <figcaption>Worn around the neck — one of two intended wearing styles</figcaption>
+        </figure>
+	<figure>
+          <img src="file:///C:/Users/32460/OneDrive%20-%20Universiteit%20Antwerpen/Bureaublad/website/IMG_4470.png" alt="The refined Memoria foam prototype with its connecting cut-outs">
+          <figcaption>The refined foam prototype, showing the connecting cut-outs in detail</figcaption>
+        </figure>
+      </div>
+
+      <div class="collab reveal">
+        <strong>In collaboration with</strong>
+        Kobe Hallans
+      </div>
+    </div>
+
+    <div class="wrap project-foot-nav">
+      <a href="#project-01">← Previous — Paper IKEA Lamp</a>
+      <a href="#project-03">Next — NEX Hand-Brace →</a>
+    </div>
+  </section>
+
+  <section class="project" id="project-03">
+    <div class="wrap">
+      <div class="project-head">
+        <div class="project-num">.03</div>
+        <h2 class="project-title">Hand—<br>Brace</h2>
+        <div class="project-tags">Group Project<br>May 2024<br>7 Weeks</div>
+      </div>
+      <div class="project-meta-row">
+        <div><strong>Tools —</strong> Sketching, Procreate, Prototyping, SolidWorks, Adobe Photoshop, Illustrator, InDesign</div>
+        <div><strong>In collaboration with —</strong> Roosmarie Mennes, Daphne Mulkers, Kauan Steurs</div>
+      </div>
+
+      <div class="project-hero-img reveal">
+        <img src="file:///C:/Users/32460/OneDrive%20-%20Universiteit%20Antwerpen/Bureaublad/website/liggende%20handbrace.png" alt="NEX hand brace, side profile render in translucent material">
+      </div>
+
+      <div class="project-body reveal">
+        <div>
+          <div class="project-body-label">Brief</div>
+          <p>Starting from inclusive design, we considered the stigmas surrounding medical devices in everyday life. Wearables where functionality takes precedence over aesthetics result in an unusual object that makes the wearer stand out from their surroundings. We were commissioned to design a stigma-free aid for a specific target group — taking an existing design to the next level by transforming a medical necessity into an attractive product that users actually want to wear.</p>
+        </div>
+        <div>
+          <div class="project-body-label">NEX — the brace with mouse function</div>
+          <p>Carpal tunnel syndrome causes pain and numbness in people who spend a lot of time working at a computer. Although a brace helps, for many people taking that step is a big one. That's why we designed NEX: a stigma-free, functional hand brace that combines comfort and technology.</p>
+          <p>Thanks to a built-in computer mouse in the palm, ergonomically sound materials and a breathable design, the wearer can switch effortlessly between typing and using the mouse — an aesthetic aid that fits seamlessly into the office environment.</p>
+        </div>
+      </div>
+
+      <div class="img-pair reveal">
+        <figure>
+          <img src="file:///C:/Users/32460/OneDrive%20-%20Universiteit%20Antwerpen/Bureaublad/website/handbrace%20prototype.png" alt="Two NEX hand braces shown from above, highlighting the breathable lattice structure">
+          <figcaption>The breathable lattice structure, shown from above</figcaption>
+        </figure>
+        <figure>
+          <img src="file:///C:/Users/32460/OneDrive%20-%20Universiteit%20Antwerpen/Bureaublad/website/Schetsen%20handbrace.png" alt="Hand and wrist anatomy sketches that informed the brace's form">
+          <figcaption>Anatomical sketch studies of the hand and wrist</figcaption>
+        </figure>
+      </div>
+
+      <div class="img-solo reveal">
+        <figure>
+          <img src="file:///C:/Users/32460/OneDrive%20-%20Universiteit%20Antwerpen/Bureaublad/website/1%20(2).png" alt="NEX hand brace rendered in clear material, side profile">
+        </figure>
+      </div>
+
+      <div class="callout reveal">
+        <strong>NEX, the brace with mouse function.</strong> A clever and handy medical aid that fits seamlessly into the office environment.
+      </div>
+
+      <div class="collab reveal">
+        <strong>In collaboration with</strong>
+        Roosmarie Mennes, Daphne Mulkers, Kauan Steurs
+      </div>
+    </div>
+
+    <div class="wrap project-foot-nav">
+      <a href="#project-02">← Previous — Memoria</a>
+      <a href="#project-04">Next — Compost Toilet →</a>
+    </div>
+  </section>
+
+  <section class="project" id="project-04">
+    <div class="wrap">
+      <div class="project-head">
+        <div class="project-num">.04</div>
+        <h2 class="project-title">Compost<br>— Toilet</h2>
+        <div class="project-tags">Individual Project<br>May 2024<br>8 Weeks</div>
+      </div>
+      <div class="project-meta-row">
+        <div><strong>Tools —</strong> Prototyping, Procreate, SolidWorks, SolidWorks Visualize, Adobe Photoshop, InDesign</div>
+      </div>
+
+      <div class="project-hero-img reveal">
+        <img src="file:///C:/Users/32460/OneDrive%20-%20Universiteit%20Antwerpen/Bureaublad/website/toiletrender%20plaatsing%20zonder%20achtergrond.png" alt="A row of nine composting toilet cabins, rendered with green doors">
+      </div>
+
+      <div class="project-body reveal">
+        <div>
+          <div class="project-body-label">Brief</div>
+          <p>Design a composting or dry toilet for the broader events sector and beyond. Developed in collaboration with WeComeAsFriends, the project addresses the well-known discomfort of temporary toilets at festivals, translating it into a more climate-neutral solution — one that sets Belgium, a country known for its fantastic festivals, apart from the rest.</p>
+          <p>Chemical toilets, the usual default at festivals and events, are harmful to the environment and waste a lot of water. As a third-year Bachelor's student in Product Development, designing a real alternative wasn't just a vague idea but a concrete goal.</p>
+        </div>
+        <div>
+          <div class="project-body-label">Urine Separation</div>
+          <p>Due to the lack of sawdust, odour has to be prevented by other means. Urine separation is one such method. I used two different systems which, together, ensure optimal urine separation: a urine trap directs the largest quantities of liquid straight to the liquid compartment, while small holes in the base of the solids compartment let any liquid that missed the trap seep through. A layer of jute over the holes ensures that only liquid can pass.</p>
+        </div>
+      </div>
+
+
+
+      <div class="img-pair uneven reveal">
+        <figure>
+          <img src="file:///C:/Users/32460/OneDrive%20-%20Universiteit%20Antwerpen/Bureaublad/website/cabine%20zonder%20achtergrond.png" alt="The composting toilet cabins lined up, aerial framing">
+          <figcaption>No atypical toilet experience = no woodchips, constant airflow, urine excretion</figcaption>
+        </figure>
+        <figure>
+          <img src="file:///C:/Users/32460/OneDrive%20-%20Universiteit%20Antwerpen/Bureaublad/website/exploded%20container%20zonder.png" alt="Exploded view of the toilet cabin showing the jute layer, urine trap cutout and fluid compartment">
+          <figcaption>Exploded view — the jute-covered base sits above the urine trap cutout and fluid compartment</figcaption>
+        </figure>
+      </div>
+
+      <div class="callout reveal">
+        <strong>Airflow &amp; odour control —</strong> tests using a scale model showed that a constant airflow, achieved by combining a chimney extraction system with ventilation holes beneath the door and in the stairwells, is the best solution for minimising odour nuisance.
+      </div>
+
+      <div class="callout reveal">
+        <strong>Logistics &amp; maintenance —</strong> the cabins are delivered ready-to-use and can be installed by a single person using a forklift. Sealable waste containers are designed to handle 120 people per day and can be moved with a pallet truck, easing the workload on the maintenance team — after the event, the distributor collects everything from a central location.
+      </div>
+
+      <div class="img-solo reveal">
+        <figure>
+          <img src="file:///C:/Users/32460/OneDrive%20-%20Universiteit%20Antwerpen/Bureaublad/website/schetsen%20bachelorproef.png" alt="Construction sketches for the urine trap and ventilation system">
+        </figure>
+        <figcaption>Working drawings for the urine trap and ventilation detailing</figcaption>
+      </div>
+
+    </div>
+
+      <div class="img-solo reveal">
+        <figure>
+          <img src="file:///C:/Users/32460/OneDrive%20-%20Universiteit%20Antwerpen/Bureaublad/website/plaatsing.jpg" alt="Top view of cambines on festival location">
+        </figure>
+        <figcaption>Toilet unit on location of festival</figcaption>
+      </div>
+
+    <div class="wrap project-foot-nav">
+      <a href="#project-03">← Previous — NEX Hand-Brace</a>
+      <a href="#project-05">Next — Devine Dining →</a>
+    </div>
+  </section>
+
+  <section class="project" id="project-05">
+    <div class="wrap">
+      <div class="project-head">
+        <div class="project-num">.05</div>
+        <h2 class="project-title">Devine Dining<br>with TABA</h2>
+        <div class="project-tags">Group Project<br>May 2025<br>8 Weeks</div>
+      </div>
+      <div class="project-meta-row">
+        <div><strong>Tools —</strong> Prototyping, SolidWorks, SolidWorks Visualize, Adobe Photoshop, Illustrator, InDesign, After Effects</div>
+        <div><strong>In collaboration with —</strong> Kato Van Grimbergen, Evert Vantongerloo, Mijntje Jacobs</div>
+      </div>
+
+      <div class="project-hero-img reveal">
+        <img src="file:///C:/Users/32460/OneDrive%20-%20Universiteit%20Antwerpen/Bureaublad/website/taba%20staand%20op%20tafel.png" alt="The TABA device resting on the table the table">
+      </div>
+
+      <div class="project-body reveal">
+        <div>
+          <div class="project-body-label">The Experience</div>
+          <p>The menu appears subtly, with blurred dishes becoming sharp as two light lines descend. These lines guide a rising relief, pressing against the fabric as tabs unfold. When a tab is pressed, the lights close in and capture the selection — the line moves downward, the top LED dims, and the bottom LED glows. This repeats for each course.</p>
+          <p>After all choices are made, everything fades. Only the "U" in MENU remains — then the course you chose lights up. The final motion pulls the last light to the bottom, leaving the table in a soft glow.</p>
+        </div>
+        <div>
+          <div class="project-body-label">TABA — the Brand</div>
+          <img class="brand-mark" src="file:///C:/Users/32460/OneDrive%20-%20Universiteit%20Antwerpen/Bureaublad/website/logo_taba.png" alt="The TABA wordmark, stamped with a hand-carved Hanko mark">
+          <p>The project's branding and design pay homage to Japanese simplicity, expressed through clean lines, intuitive motion and a quiet presence. To reflect this harmony between culture and design, the logo is inspired by the traditional Japanese Hanko stamp. By hand-carving a woodblock print for the final logo, the inspiration could be carried through seamlessly — from concept to the object on the table.</p>
+        </div>
+      </div>
+
+      <div class="img-pair reveal">
+        <figure>
+          <img src="file:///C:/Users/32460/OneDrive%20-%20Universiteit%20Antwerpen/Bureaublad/website/beeld%20(29%20of%2030).jpg" alt="Behind-the-scenes shot of the TABA prototype being assembled and tested">
+          <figcaption>Relief in the screen</figcaption>
+        </figure>
+        <figure>
+          <img src="file:///C:/Users/32460/OneDrive%20-%20Universiteit%20Antwerpen/Bureaublad/website/poster%20lamp%20hanging.png" alt="The TABA device standing upright, glowing orange in the dark">
+          <figcaption>The folded form, lit from within</figcaption>
+        </figure>
+      </div>
+
+      <div class="img-solo reveal">
+        <figure>
+          <img src="file:///C:/Users/32460/OneDrive%20-%20Universiteit%20Antwerpen/Bureaublad/website/beeld%20(11%20of%2030).jpg" alt="Two diners interacting with the TABA menu device over a table set for dinner">
+        </figure>
+        <figcaption>Devine dining with TABA — the menu as a shared, tactile ritual</figcaption>
+      </div>
+
+      <div class="img-pair uneven reveal">
+        <figure>
+          <img src="file:///C:/Users/32460/OneDrive%20-%20Universiteit%20Antwerpen/Bureaublad/website/WhatsApp%20Image%202026-06-20%20at%2016.04.08.jpeg" alt="The full team's hands stamped with the hand-carved Hanko mark">
+          <figcaption>The hand-carved Hanko stamp, used to produce the final TABA wordmark</figcaption>
+        </figure>
+        <figure>
+          <img src="file:///C:/Users/32460/OneDrive%20-%20Universiteit%20Antwerpen/Bureaublad/website/taba%20stamp%20setup.png" alt="Close-up of the carved wooden Hanko stamp and red ink pad">
+          <figcaption>Carving the Hanko stamp by hand</figcaption>
+        </figure>
+      </div>
+
+     
+
+    <div class="wrap project-foot-nav">
+      <a href="#project-04">← Previous — Compost Toilet</a>
+      <a href="#contact">Get in touch →</a>
+    </div>
+  </section>
+
+
+
+  <section class="section-pad contact wrap" id="contact">
+    <div class="eyebrow reveal">Get In Touch</div>
+    <h2 class="reveal">Let's design something worth keeping.</h2>
+
+<div class="img-solo reveal">
+        <figure>
+          <img src="file:///C:/Users/32460/OneDrive%20-%20Universiteit%20Antwerpen/Bureaublad/website/Bun%20-%20Free%20Business%20Card%2003.png" alt="Business card">
+        </figure>
+        
+
+    <div class="contact-row reveal">
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:louizavw@gmail.com">louizavw@gmail.com</a>
+        <a class="contact-link" href="tel:+32460953443">+32 460 95 34 43</a>
+        <a class="contact-link" href="instagram:https://www.instagram.com/atelier_vw/">@atelier_vw</a>
+        <a class="contact-link" href="https://www.linkedin.com/in/louiza-van-wynsberghe-a851b1333/">linkedin.com</a>
+	<a class="contact-link" href="https://www.behance.net/louizavanwynsberghe">Behance.net</a>
+
+      </div>
+      <div class="contact-small">Antwerp, Belgium</div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>&copy; Louiza Van Wynsberghe</span>
+  <span>Product Development, University of Antwerp</span>
+</footer>
+
+<button class="totop" id="totop" aria-label="Back to top">↑</button>
+
+<script>
+// progress rail
+const railFill = document.getElementById('railFill');
+function updateRail() {
+  const h = document.documentElement;
+  const scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+  railFill.style.width = scrolled + '%';
+}
+document.addEventListener('scroll', updateRail);
+updateRail();
+
+// nav hide on scroll down, show on scroll up
+let lastY = window.scrollY;
+const nav = document.getElementById('nav');
+document.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  if (y > lastY && y > 140) nav.classList.add('hide');
+  else nav.classList.remove('hide');
+  lastY = y;
+});
+
+// mobile nav toggle
+const navToggle = document.getElementById('navToggle');
+const navMobile = document.getElementById('navMobile');
+navToggle.addEventListener('click', () => navMobile.classList.toggle('open'));
+navMobile.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navMobile.classList.remove('open')));
+
+// reveal on scroll
+const reveals = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.12 });
+reveals.forEach(el => io.observe(el));
+
+// back to top
+const totop = document.getElementById('totop');
+const footerEl = document.querySelector('footer');
+document.addEventListener('scroll', () => {
+  if (window.scrollY > 600) totop.classList.add('show');
+  else totop.classList.remove('show');
+
+  const fRect = footerEl.getBoundingClientRect();
+  if (fRect.top < window.innerHeight) totop.classList.add('near-footer');
+  else totop.classList.remove('near-footer');
+});
+totop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+</script></body>
+</html>
